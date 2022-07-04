@@ -1,0 +1,45 @@
+<?php
+$host="localhost";
+$user="root";
+$password="";
+$db="oads";
+
+mysqli_connect($host,$user,$password);
+mysqli_select_db($db);
+
+if(isset($_POST['username'])){
+    $uname=$_POST['username'];
+    $password=$_POST['password'];
+    $sql="select * from loginn where user='".$uname."'AND Pass='".$password."'limit 1";
+
+    $result=mysqli_query($sql);
+    if(mysql_num_roes($result)==1){
+        echo "Login Successful";
+        exit();
+    }
+    else{
+        echo"You have Entered Incorrect Details";
+        exit();
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+</head>
+<body>
+    <div class="block">
+<form method="POST" action="">
+    <div class="form_input">
+        <input type="text" name="username" placeholder="Enter Your Username"/>
+</div>
+        <div class="form_input">
+        <input type="password" name="password" placeholder="Enter Your Password"/>
+</div>
+<input type="submit" name="submit" value="Login" class="btn-login"/>
+</form>
+</div>
+</body>
+</html>
